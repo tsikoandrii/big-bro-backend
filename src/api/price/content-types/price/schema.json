@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "prices",
+  "info": {
+    "singularName": "price",
+    "pluralName": "prices",
+    "displayName": "Price",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "service": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::service.service"
+    },
+    "master": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::master.master"
+    },
+    "amount": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

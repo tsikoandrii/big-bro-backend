@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "masters",
+  "info": {
+    "singularName": "master",
+    "pluralName": "masters",
+    "displayName": "Master",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "morning": {
+      "type": "dynamiczone",
+      "components": [
+        "day.working-hour"
+      ]
+    },
+    "day": {
+      "type": "dynamiczone",
+      "components": [
+        "day.working-hour"
+      ]
+    },
+    "evening": {
+      "type": "dynamiczone",
+      "components": [
+        "day.working-hour"
+      ]
+    },
+    "busy": {
+      "type": "json"
+    }
+  }
+}

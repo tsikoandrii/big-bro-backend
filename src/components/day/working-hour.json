@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_day_working_hours",
+  "info": {
+    "displayName": "Working Hour",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "Hour": {
+      "type": "string"
+    }
+  }
+}
