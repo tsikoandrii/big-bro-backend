@@ -18,5 +18,23 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: 'DELETE',
+      path: '/delete-prices-master',
+      handler: 'checkout.deletePricesByMaster',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: 'DELETE',
+      path: '/delete-prices-service',
+      handler: 'checkout.deletePricesByService',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

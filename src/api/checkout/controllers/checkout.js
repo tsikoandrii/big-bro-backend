@@ -35,4 +35,34 @@ module.exports = {
       ctx.badRequest("Post report controller error", { moreDetails: err });
     }
   },
+  async deletePricesByMaster(ctx, next) {
+    try {
+
+      const { id } = ctx.request.query
+
+      const data = await strapi
+        .service("api::checkout.checkout")
+        .deletePricesByMaster(id);
+
+      ctx.body = data;
+    } catch (err) {
+      console.log(err)
+      ctx.badRequest("Post report controller error", { moreDetails: err });
+    }
+  },
+  async deletePricesByService(ctx, next) {
+    try {
+
+      const { id } = ctx.request.query
+
+      const data = await strapi
+        .service("api::checkout.checkout")
+        .deletePricesByService(id);
+
+      ctx.body = data;
+    } catch (err) {
+      console.log(err)
+      ctx.badRequest("Post report controller error", { moreDetails: err });
+    }
+  },
 };

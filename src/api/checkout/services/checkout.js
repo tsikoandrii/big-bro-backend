@@ -1,14 +1,25 @@
 module.exports = {
   createAppointment: async (name, phone, priceId, date, time, masterId) => {
     try {
+      let customers = await strapi.entityService.findMany('api::customer.customer', {
+        filters: {
+          phone: phone
+        }
+      });
+
+      let customer;
 
       // Create new Customer
-      const customer = await strapi.entityService.create('api::customer.customer', {
-        data: {
-          name: name,
-          phone: phone
-        },
-      });
+      if (!customers.length) {
+        customer = await strapi.entityService.create('api::customer.customer', {
+          data: {
+            name: name,
+            phone: phone
+          },
+        });
+      } else {
+        customer = customers[0]
+      }
 
       time = JSON.parse(time);
 
@@ -87,4 +98,54 @@ module.exports = {
       return err;
     }
   },
+  deletePricesByMaster: async (id) => {
+    try {
+      // Find a appointment
+      const prices =  await strapi.entityService.findMany('api::price.price', {
+        filters: {
+          master: id
+        }
+      })
+
+      const ids = prices.map(price => price.id)
+
+      await Promise.all(
+        ids.map((id) =>
+          strapi.db.query("api::price.price").delete({
+            where: { id },
+          })
+        )
+      );
+
+      return prices;
+    } catch (err) {
+      console.log(err)
+      return err;
+    }
+  },
+  deletePricesByService: async (id) => {
+    try {
+      // Find a appointment
+      const prices =  await strapi.entityService.findMany('api::price.price', {
+        filters: {
+          service: id
+        }
+      })
+
+      const ids = prices.map(price => price.id)
+
+      await Promise.all(
+        ids.map((id) =>
+          strapi.db.query("api::price.price").delete({
+            where: { id },
+          })
+        )
+      );
+
+      return prices;
+    } catch (err) {
+      console.log(err)
+      return err;
+    }
+  }
 };
